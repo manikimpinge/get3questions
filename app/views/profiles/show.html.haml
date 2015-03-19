@@ -1,0 +1,69 @@
+.row-fluid
+  .span3
+    .sidebar.text-center
+      %div{:itemscope => "", :itemtype => "http://schema.org/LocalBusiness"}
+        %a{:href => "#", :data => {"toggle" => "collapse", "target" => "#company-info"}} View company info
+        %div#company-info.collapse
+          %p
+            %address
+              = profile.address
+              %br/
+              %span
+                #{profile.city},
+                = profile.state
+                = profile.zip
+              %br/
+              %abbr{title: "Phone"} P:
+              = profile.phone
+              %br/ 
+              #{link_to "#{profile.website}", "http://#{profile.website}", target: "_blank"}
+            %hr/ 
+            %strong About us
+            %br/ 
+            =profile.description
+        %hr/ 
+        %div.border.chart-wrapper
+          %canvas{:id => "widget-chart", "data-percentage" => "#{profile.recommended_percentage}"} 55%
+          .text-percentage #{profile.recommended_percentage}%
+          %p of people recommend us
+        %hr/
+        - if profile.reviews.present?
+          %meta{:itemprop => "ratingValue", :content => "#{profile.average_score.to_s}"}
+            %div{:class => "star-rating-"+profile.average_score.to_s.gsub('.','-').gsub('-0',""), :style => "margin-left:50px"}
+          %strong.average-score #{profile.average_score.to_s}
+
+          %span{:itemprop => "ratingCount", class: "rating-count"}
+            based on
+            %strong 
+              = profile.reviews.count
+            reviews
+        %hr/ 
+        - if profile.yelp_score and !profile.yelp_score_value.nil?
+          %h3 Our Yelp score 
+          %a{:href => "#"} 
+            .yelp-logo
+            %div{:class => "yelp-rating-"+profile.yelp_score_value.gsub('.','-').gsub('-0',"")}
+          %hr/ 
+        #{link_to "Review this business", new_profile_review_url(profile), class: "btn btn-primary btn-large btn-block"}
+      %p.sidebar-footer
+        Verified reviews provided by 3Questions
+
+  .span9
+    .review-item
+      %h1.text-center
+        %span{:itemprop => "name"}
+          #{profile.business_name} reviews
+    - if profile.reviews.present?
+      %ul.unstyled
+        - profile.reviews.reverse.each do |review|
+          %li
+            -if current_user.nil? and review.public == true
+              =render 'reviews',{:review => review}
+            -elsif !current_user.nil?
+              =render 'reviews',{:review => review}
+    -else
+      %p 
+        This business has not been reviewed yet. Be the first to #{link_to "write a review", new_profile_review_url(profile)}.
+
+=javascript_include_tag "jquery"
+=javascript_include_tag "profile"

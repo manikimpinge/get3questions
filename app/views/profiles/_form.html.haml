@@ -1,0 +1,29 @@
+.row
+  .span4
+    = simple_form_for(profile, html: {class: "form-horizontal" }, html: {class: "well" } ) do |f|
+      %fieldset
+        = f.input :business_name, as: :string
+        = f.input :description, as: :string
+        = f.input :address, as: :string
+        = f.input :city, as: :string
+        = f.input :state, as: :string
+        = f.input :zip, as: :string
+        = f.input :phone, as: :string, placeholder: 'xxx-xxx-xxxx',input_html: {class: "bfh-phone", "data-format" => "ddd-ddd-dddd", "data-number" => profile.phone}
+        = f.input :website, as: :string, placeholder: 'www.company.com'
+        = f.input :image, as: :file, label: "Add a logo or photo"
+        - unless profile.image_file_name.nil?
+          %span.current_image
+            = label_tag "Current image is #{profile.image_file_name}"
+          = button_tag "Delete",{:id => "delete_profile_image", :class => profile.id, :name => "image"}
+
+      .form-actions
+        %input.btn.btn-primary{:type => "submit", :value => "Submit"}/
+  -#.span8
+  -#  %h4 3Questions helps your business:
+  -#  %ol
+  -#    %li
+  -#     Get instant customer feedback
+  -#    %li
+  -#      Get to your customers before they post a negative review
+  -#    %li
+  -#      Get more positive reviews

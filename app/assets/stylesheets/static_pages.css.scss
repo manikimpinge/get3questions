@@ -1,0 +1,281 @@
+@import "bourbon";
+
+@import "base";
+
+body {
+
+  background-color: #FFFFFF;
+
+}
+
+.well {
+  
+  background-color: #FFFFFF;
+
+}
+
+.hero-unit {
+
+  background-color: #ffffff;
+
+}
+
+.form-actions {
+  
+  padding: 19px 20px 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  *zoom: 1;
+  
+  }
+
+.widget_right_auto {
+  background-position: -114px -82px;
+}
+
+.icon_left_right {
+  background-image: url("/assets/right_icon.png" );
+}
+
+.widget_left_auto {
+  background-position: -76px -82px;
+}
+
+/* =================
+    HOME: signed in
+   ================= */
+.text-dimmed {
+  color: #999;
+  font-weight: 300;
+}
+
+.btn.color-dropdown {
+  border: 1px solid #CCC;
+}
+
+.pick-a-color-markup + .btn {
+  vertical-align: top;
+  margin-top: 1px;
+}
+
+.color-select.btn.btn-mini {
+  border: 1px solid #CCC;
+}
+
+#delete_page_header {
+  border-radius: 5px;
+  background: #DE6450;
+  border: none;
+  color: #FFF;
+  padding: 4px 10px;
+}
+
+.edit_profile {
+  width: 225px;
+  margin: 0 auto;
+
+  .thumbnail {
+    margin: 0 auto;
+  }
+}
+
+.btn.btn-file {
+  padding: 3px 10px;
+  border: 1px solid #aaa;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.btn-file > input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  font-size: 23px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  transform: translate(-300px, 0) scale(4);
+  direction: ltr;
+}
+
+.fileupload {
+  margin-bottom: 9px;
+}
+
+.fileupload .uneditable-input {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  cursor: text;
+}
+
+.fileupload .thumbnail {
+  display: inline-block;
+  margin-bottom: 5px;
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.fileupload .thumbnail > img {
+  display: inline-block;
+  max-height: 100%;
+  vertical-align: middle;
+}
+
+.fileupload .btn {
+  vertical-align: middle;
+}
+
+.fileupload-exists .fileupload-new,
+.fileupload-new .fileupload-exists {
+  display: none;
+}
+
+.fileupload-inline .fileupload-controls {
+  display: inline;
+}
+
+.fileupload-new .input-append .btn-file {
+  -webkit-border-radius: 0 3px 3px 0;
+     -moz-border-radius: 0 3px 3px 0;
+          border-radius: 0 3px 3px 0;
+}
+
+.thumbnail-borderless .thumbnail {
+  padding: 0;
+  border: none;
+  -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+
+.fileupload-new.thumbnail-borderless .thumbnail {
+  border: 1px solid #ddd;
+}
+
+.control-group.warning .fileupload .uneditable-input {
+  color: #a47e3c;
+  border-color: #a47e3c;
+}
+
+.control-group.warning .fileupload .fileupload-preview {
+  color: #a47e3c;
+}
+
+.control-group.warning .fileupload .thumbnail {
+  border-color: #a47e3c;
+}
+
+.control-group.error .fileupload .uneditable-input {
+  color: #b94a48;
+  border-color: #b94a48;
+}
+
+.control-group.error .fileupload .fileupload-preview {
+  color: #b94a48;
+}
+
+.control-group.error .fileupload .thumbnail {
+  border-color: #b94a48;
+}
+
+.control-group.success .fileupload .uneditable-input {
+  color: #468847;
+  border-color: #468847;
+}
+
+.control-group.success .fileupload .fileupload-preview {
+  color: #468847;
+}
+
+.control-group.success .fileupload .thumbnail {
+  border-color: #468847;
+}
+
+/* =========
+    PRICING
+   ========= */
+body.pricing {
+  background: rgba($blue, .05);
+
+  h1 {
+    color: rgba(0,0,0,.4);
+  }
+}
+
+.pricing-table {
+  padding: 0 20px 15px;
+  background: $white;
+  @include box-shadow(0 0 3px rgba(0,0,0,.05));
+  border-radius: 3px;
+  margin-top: em(30);
+
+  h2 {
+    background: $blue;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 10px 0;
+    color: $white;
+    font-weight: 100;
+    border-radius: 3px 3px 0 0;
+    margin-bottom: em(10);
+  }
+
+  h4 {
+    color: rgba(0,0,0,.6);
+    border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+    padding: em(20) 0;
+    margin-bottom: em(20);
+  }
+
+  p {
+    font-size: em(21);
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: em(20);
+  }
+}
+
+a.details-toggle {
+  display: block;
+  font-size: em(18);
+  margin-top: 10px;
+}
+
+.details-wrapper {
+
+  ul {
+    position: relative;
+    margin: em(20) 0 0;
+    border-radius: 0 0 5px 5px;
+
+    li {
+      border-bottom: 1px dashed #ccc;
+      font-size: em(16);
+      font-weight: 400;
+      line-height: 2.5;
+      color: #666;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+
+  }
+}
+
+#reviews-details, #custom-details {
+  @include transition(all .4s);
+}

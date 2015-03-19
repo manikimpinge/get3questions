@@ -1,0 +1,124 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
+
+
+/* Bourbon */
+@import "bourbon";
+
+/* Base vars */
+@import "base";
+
+/* Objects */
+@import "objects/hero";
+
+body {
+	font-family: 'Lato', sans-serif;
+
+	@media(min-width: 979px) {
+		padding-top: 55px;
+	}
+}
+
+
+.homepage-container {
+
+	@media(max-width: 768px) {
+		text-align: center;
+		.text-right, .text-left {
+			text-align: center;
+		}
+	}
+
+    .unit-wrapper {
+        padding: em(80) 0;
+
+        @media(max-width: 768px) {
+        	padding: 0 0 em(80);
+        }
+    }
+
+    .well {
+    	padding-top: em(10);
+
+    	@media(max-width: 768px) {
+    		max-width: 240px;
+    		margin: em(20) auto 0;
+        	display: block;
+    	}
+
+	  	strong {
+	  		font-size: em(50);
+	  		display: block;
+	  		line-height: 1.5;
+	  	}
+
+	  	small {
+			display: block;
+			color: rgba(0,0,0,.4);
+	  	}
+    }
+
+    // unit specific spacing
+    .shared-facebook h4 {
+    	padding-top: 60px;
+
+    	@media(max-width: 979px) {
+    		padding-top: 0;
+    	}
+
+    	@media(min-width:1200px) {
+    		padding-top: 90px;
+    	}
+    }
+
+    .add-reviews h4 {
+    	padding-top: 0;
+
+    	@media(min-width: 979px) {
+    		padding-top: 100px;
+    	}
+		
+    	@media(min-width:1200px) {
+    		padding-top: 130px;
+    	}
+    }
+
+}
+
+.light-grey {
+	padding: em(20) 0 em(10);
+	background: rgba($blue, .05);
+
+	@media(max-width: 768px) {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+
+	span {
+		vertical-align: top;
+		font-size: em(20);
+		line-height: em(25);
+		margin-right: em(15);
+	}
+
+	form {
+		margin-bottom: 0;
+
+		input[type="text"] {
+			margin-right: em(10);
+		}
+
+		input[type="submit"] {
+			border-radius: 5px;
+			line-height: 30px;
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
+}
+
+// homepage alert fix
+.alert {
+	margin: 0;
+	border-radius: 0;
+	text-align: center;
+}

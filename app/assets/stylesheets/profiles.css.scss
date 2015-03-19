@@ -1,0 +1,170 @@
+@import "bourbon";
+
+@import "base";
+
+body.profiles {
+	background: rgba($blue, .05);
+
+    .review-star {
+        vertical-align: top;
+    }
+}
+
+.text-percentage {
+	position: absolute;
+	top: 65px;
+	text-align: center;
+	font-size: 36px;
+	width: 100%;
+
+	@media(max-width: 979px) {
+		top: 55px;
+		font-size: em(28);
+	}
+}
+
+#widget-chart {
+	@media(max-width: 979px) {
+		width: 131px;
+	}
+}
+
+.chart-wrapper {
+	position: relative;
+}
+
+// custom profile image
+.custom-profile-image {
+	position: relative;
+	margin: em(10) auto;
+	display: block;
+
+	// adding top negative margin to cover body padding left by 
+	// navbar upon its removal.
+	// TODO: Change navbar to statically positioned to remove
+	// body padding completely across the whole project
+	@media(min-width: 979px) {
+		top: -40px;
+		margin: 0 auto;
+	}
+}
+
+// SIDEBAR
+.sidebar {
+	background: $white;
+	padding: em(20) em(20) 0;
+	@include box-shadow(0 0 3px rgba(0,0,0,.05));
+	border-radius: 3px;
+
+	h3 {
+		margin: 0;
+		font-size: em(22);
+	}
+
+	h3 + a {
+		color: #aaa;
+	}
+}
+
+.sidebar-footer {
+	font-size: em(13);
+	text-align: center;
+	color: #AAA;
+	padding-top: em(5);
+	padding-bottom: em(5);
+	margin-top: em(25);
+	border-top: 1px solid #f1f1f1;
+}
+
+.average-score {
+	line-height: 1.2;
+	font-size: em(65);
+	vertical-align: middle;
+	display: block;
+}
+
+.rating-count {
+	color: rgba(0,0,0,.6);
+	font-size: em(16);
+
+	strong {
+		font-size: em(18);
+	}
+}
+
+// REVIEWS
+.review-item {
+	background: $white;
+	padding: em(20) em(30);
+	@include box-shadow(0 0 3px rgba(0,0,0,.05));
+	border-radius: 3px;
+	margin-bottom: em(20);
+	@include transition(all .4s);
+
+	p {
+		font-size: em(18);
+		line-height: 1.5;
+	}
+}
+
+.text-green {
+	color: #00A285;
+}
+
+.children {
+	list-style: none;
+	margin-top: em(20);
+
+	li {
+		border-top: 1px solid #f1f1f1;
+		padding-top: em(10);
+	}
+}
+
+// readmore handle
+.morecontent span {
+    display: none;
+}
+
+// user avatar
+.muted img {
+	width: 19px;
+	height: 19px;
+	border-radius: 50%;
+	vertical-align: top;
+	margin-top: 3px;
+	margin-left: 5px;
+}
+
+// yelp logo
+.yelp-logo {
+	background: url(yelp.png) no-repeat;
+	background-size: 70px 36px;
+	width: 70px;
+	height: 36px;
+	margin-right: 10px;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+// yelp rating sprite
+[class^="yelp-rating-"] {
+	background: url("yelp_stars.png") top left no-repeat;
+	height: 15px;
+	width: 84px;
+	display: inline-block;
+}
+
+$i: 1;
+@while $i < 6 {
+   
+    .yelp-rating-#{$i} {
+       background-position: 0 -#{$i * 38 - 19}px;
+    }
+
+.yelp-rating-#{$i}-5 {
+       background-position: 0 -#{$i * 38}px;
+    }
+
+   $i: $i + 1;
+}

@@ -1,0 +1,24 @@
+button.btn.btn-primary {
+	border-radius: 5px;
+	line-height: 22px;
+}
+
+.btn {
+	border: none;
+	@include box-shadow(none);
+	text-shadow: none;
+	@include transition(all, .4s);
+}
+
+.btn-primary {
+	background: $green;
+
+	&:hover {
+		@include transition(all, .4s);
+		background: lighten($green, 8%);
+	}
+}
+
+.btn-alt {
+	background: #EEE;
+}

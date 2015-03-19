@@ -1,0 +1,18 @@
+%tr
+  %td
+    = review.profile_id
+  %td
+    = review.score
+  %td
+    = review.recommendation == true ? "Yes" : "No"
+  %td
+    = review.review
+  %td
+    = review.public == true ? "1" : "2"
+  %td
+    = link_to 'Show', [profile, review]
+  -if profile.id == current_user.profile.id
+    %td
+      = link_to 'Edit', edit_profile_review_path(profile, review)
+    %td
+      = link_to 'Destroy', [profile, review], method: :delete, data: { confirm: 'Are you sure?' }

@@ -1,0 +1,182 @@
+= stylesheet_link_tag "pick-a-color"
+
+.row
+  .span8.offset2
+    %h1.text-center.text-dimmed Welcome back #{current_user.first_name}!
+    .well
+      %h3.text-center What would you like to do?
+      .row-fluid
+        .span4
+          = link_to "Send an invite", new_invitation_path, class: "btn btn-alt btn-large"
+        .span4.text-center
+          = link_to "Get invitation link", "#invite", class: "btn btn-alt btn-large", data: { toggle: "modal" }
+        .span4.text-right
+          = link_to "Get the widget", "#other_widget", class: "btn btn-alt btn-large", data: { toggle: "modal" }
+      - if current_user.user_account_type == "custom"
+        %hr/ 
+        %p.text-center 
+          = link_to "Add reviews to my website", "#copy-detail-embed-url", class: "btn btn-primary btn-large", data: { toggle: "modal" }
+      %hr/ 
+      %h3.text-center Manage your profile
+      .pagination.pagination-centered
+        %ul
+          %li #{link_to 'Invitations', invitations_path}
+          %li #{link_to 'View Profile', profile_path(current_user.profile)}
+          %li #{link_to 'Edit Profile', edit_profile_path(current_user.profile)}
+          %li #{link_to "Edit Account", edit_user_registration_path}
+          %li #{link_to 'Edit Reviews', profile_reviews_path(current_user.profile)}
+      - if current_user.user_account_type == "custom"
+        %hr/ 
+        %h5.text-center  Change the background color on your profile and review pages:
+        %p.text-center
+          =text_field_tag :page_color, @profile.page_color, :placeholder => "Select a color", :class => "pick-a-color input-small"
+          =link_to 'Save', '#', {:id => "save_page_color", :class => "#{@profile.id} btn btn-primary"}
+          %hr/ 
+          %h5.text-center Change a header image
+          %p.text-center         
+            =form_for @profile, :url => {:controller => 'profiles',:action => 'save_page_header',:id => @profile.id, :class => "text-center"}, :method => 'post' do |f|
+              .fileupload.fileupload-new{:data => {provides: "fileupload"}}
+                .fileupload-new.thumbnail{:style => "max-width: 200px; max-height: 150px"}
+                  -unless @profile.page_header_file_name.nil?
+                    %span.current_image
+                      = @profile.page_header_file_name
+                  -else
+                    You don't have any image uploaded yet
+                .fileupload-preview.fileupload-exists.thumbnail{:style => "max-width: 200px; max-height: 150px; line-height: 20px;"}
+                %div
+                  %span.btn.btn-file
+                    %span.fileupload-new Select image
+                    %span.fileupload-exists Change
+                    = f.file_field :page_header
+                  = button_tag "Delete",{:id => "delete_page_header", :class => @profile.id, :name => "page_header"} unless @profile.page_header_file_name.nil?
+                  %input{:type => "submit", :value => "Save", :class => "btn btn-primary"}/ 
+      %hr/ 
+      %h4.text-center Send a second request for feedback?
+      %p.text-center
+        = check_box_tag "resend_review_email", nil, current_user.second_email_request == true
+        Yes, send a follow-up email to customers who have not provided feedback.
+      %hr/ 
+      %h4.text-center Display your Yelp rating on your profile page?
+      %p.text-center
+        = check_box_tag "display_yelp_score", nil, current_user.profile.yelp_score == true
+        Yes, add my Yelp rating to my profile page.
+        - if current_user.profile.yelp_score_value.nil?
+          =link_to 'Add Yelp score', '#add_yelp_score',class: "btn btn-link yelp_score_rating hide", data: { toggle: "modal" }
+        - else
+          =link_to 'Edit Yelp score', '#add_yelp_score',class: "btn btn-link yelp_score_rating hide", data: { toggle: "modal" }
+      %hr/
+      %h4.text-center Send an email asking for a review?
+      %p.text-center
+        = check_box_tag "review_name_link", nil, current_user.follow_up_email == true
+        Yes, send a follow up email asking for a review on my preferred review site (e.g., Yelp):
+        - if current_user.follow_up_email == true and current_user.profile.review_link.blank? and current_user.profile.review_name.blank?
+          =link_to 'Add a Review site', '#add_review_site',class: "btn btn-link review_site_link hide", data: { toggle: "modal" }
+        - else
+          =link_to 'Edit', '#add_review_site',class: "btn btn-link review_site_link hide", data: { toggle: "modal" }
+      - if current_user.user_account_type == "custom"
+        %hr/ 
+        %h4.text-center Should we add a product description question to your review form?
+        %p.text-center
+          = check_box_tag "product_question", nil, current_user.product_description == 'on'
+          Yes, add a product description question 
+          =link_to 'Edit the question', '#edit_product_ques',class: "btn btn-link", data: { toggle: "modal" }
+      - else
+        %hr/ 
+        %h4.text-center Need more options?
+        %p.text-center
+          = link_to "Upgrade to the Custom plan", "#{get_payment_static_pages_url(:account_type => "custom")}", class: "btn btn-primary"
+
+#invite.modal.hide.fade
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h4
+      Copy the Link
+  .modal-body
+    = text_area_tag :embed_url, new_profile_review_url(current_user.profile), style: "width: 80%;"
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"}
+      Close
+
+#copy-detail-embed-url.modal.hide.fade
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h4
+      Copy this Embed URL
+  .modal-body
+    = text_area_tag :embed_url, "<iframe src='#{detail_profile_widgets_url(current_user.profile)}' frameborder='0' allowtransparency='true' width='90%' height='400'></iframe>", style: "width: 80%;height:65px;"
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"}
+      Close
+
+#copy-summary-embed-url.modal.hide.fade
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h4
+      Copy this Embed URL
+  .modal-body
+    = text_area_tag :embed_url, "<iframe src='#{summary_profile_widgets_url(current_user.profile)}' frameborder='0' allowtransparency='true' width='200' height='400'></iframe>", style: "width: 80%;height:65px;"
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"}
+      Close
+
+- if current_user.user_account_type == "custom"
+  #edit_product_ques.modal.hide.fade
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+      %h4
+        Edit
+    .modal-body
+      = label_tag "Label"
+      = text_field_tag :ques, "#{@profile.product_question}"
+      = label_tag "Placeholder"
+      = text_field_tag :placeholder, "#{@profile.product_placeholder}"
+      = hidden_field_tag :profile_id, "#{@profile.id}" 
+    .modal-footer
+      %button#save_product_description.btn{"aria-hidden" => "true", "data-dismiss" => "modal"}
+        Save
+
+#other_widget.modal.hide.fade
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h4
+      Copy this URL
+  .modal-body
+    = text_area_tag :embed_url, "<iframe id='myIframe' frameBorder='0' src='#{iframe_box_static_page_url(current_user.profile)}' style='left:12px;bottom:0px;width: 22%; height: 44%; overflow:hidden;position:fixed;z-index:1;border-radius:6px 6px 6px 6px'></iframe>", style: "width: 80%;height:65px;"
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"}
+      Close
+#add_review_site.modal.hide.fade
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h4
+      Add Review Site
+  .modal-body
+    = label_tag "Review name"
+    = text_field_tag :review_name, "#{@profile.review_name}"
+    = label_tag "Review link"
+    = text_field_tag :review_link, "#{@profile.review_link}", :placeholder => "e.g., www.yelp.com", :rel => "tooltip", :title => "www.yelp.com"
+    %label{:style => "cursor:default"}
+      To get the best results, provide the link that goes directly to the review form for your profile. For example, on Yelp you would link directly to the 'Write a Review' page for your business - 
+      %a{:href=>'https://www.yelp.com/writeareview/biz/cMyf8e6frO9PIutPvXpjow?return_url=%2Fbiz%2FcMyf8e6frO9PIutPvXpjow ', :target => "_blank"} like this page.
+  .modal-footer
+    = hidden_field_tag :profile_id, "#{@profile.id}"
+    %button#save_review_name_link.btn{"aria-hidden" => "true", "data-dismiss" => "modal"}
+      Save
+#add_yelp_score.modal.hide.fade
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h4
+      Add Yelp score
+  .modal-body
+    = label_tag "Yelp score"
+    = select(:yelp_score_value, :status, options_for_select(["1","1.5","2","2.5","3","3.5","4","4.5","5"],"#{@profile.yelp_score_value}"))
+  .modal-footer
+    %button#save_yelp_score.btn{"aria-hidden" => "true", "data-dismiss" => "modal"}
+      Save
+
+
+=javascript_include_tag "jquery"
+=javascript_include_tag "tinycolor"
+=javascript_include_tag "pick-a-color"
+=javascript_include_tag "bootstrap-fileupload"
+=javascript_include_tag "user-account"

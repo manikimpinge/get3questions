@@ -1,0 +1,58 @@
+.navbar {
+	margin-bottom: 0;
+}
+
+.navbar .navbar-inner {
+
+	background: $blue;
+	border: none;
+	@include box-shadow(none);
+
+	.brand{
+		@include hide-text;
+		@include retina-image("logo", 131px 32px);
+		padding: 0;
+		display: block;
+		width: 131px;
+		height: 32px;
+		margin-left: 20px;
+		margin-top: 3px;
+
+		@media(min-width: 978px) {
+			margin-top: 11px;
+		}
+	}
+
+	@media(max-width: 768px) {
+		.nav {
+			text-align: center;
+
+			& > li > a {
+				border-bottom: 1px solid rgba(white, .2);
+			}
+
+			& > li:last-of-type > a {
+				border: none;
+			}
+
+			& > li > a:hover {
+				background: shade($blue, 20%);
+			}
+		}
+	}
+
+	.nav > li > a {
+		color: $white;
+		text-shadow: none;
+		font-size: em(20);
+		line-height: 2;
+		font-weight: 300;
+		color: rgba($white, .6);
+		@include transition(color, .4s);
+
+		&:hover {
+			color: $white;
+		}
+	}
+
+}

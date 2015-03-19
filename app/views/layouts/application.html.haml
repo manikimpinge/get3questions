@@ -1,0 +1,17 @@
+!!!
+%html
+  %head{ prefix: "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# three_questions: http://ogp.me/ns/fb/three_questions#"}
+    %title #{@profile_name.nil? ? 'Questions' : @profile_name}
+    = stylesheet_link_tag "application", media: "all"
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0"}
+
+    = csrf_meta_tags
+    = yield :meta_tags
+
+    = render "google_analytics" if Rails.env == "production"
+  %body{ class: "#{controller.controller_name} #{controller.action_name}",:style => "background-color:##{@profile_page_color unless @profile_page_color.nil?};background:#{@transparent if @transparent}" }
+    = render "navigation" if @profile_page_header.nil?
+    .div{:class => "#{'container' unless params[:controller] == "static_pages" && params[:action] == "home" && user_signed_in? == false}"}
+      = render "flash", flash: flash
+      = yield
+    = render "js"

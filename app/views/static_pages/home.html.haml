@@ -1,0 +1,106 @@
+
+.hero
+  .container
+    .row-fluid
+      .span6
+        .text-right
+          %h1 Customer reviews for your website.
+          %p
+            %strong 3Questions
+            makes it easy to collect and share customer reviews on your website.
+            Add reviews to your website and let your customers do the selling for you.
+          = link_to "Try it for free.", new_user_registration_path, class: "btn btn-large btn-primary"
+
+      .span6
+        <iframe id='myIframe' class='widget' frameBorder='0' src='http://www.get3questions.com/static_pages/7-sterling-cooper-draper-pryce/iframe_box'></iframe>
+.light-grey.clearfix
+  %form.text-center
+    %span Free email course: "Get more customers from Google."
+    .createsend-button{:data => {listid: 't/D7/F7A/9B0/3FA4BD49D4B2BF09'}, :style => 'height:27px;display:inline-block;' }
+    %script 
+      (function () { var e = document.createElement('script'); e.type = 'text/javascript'; e.async = true; e.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://btn.createsend1.com/js/sb.min.js?v=2'; e.className = 'createsend-script'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(e, s); })();
+.container.homepage-container
+  .row-fluid
+    .span6.offset3
+      %h2.page-header.text-center Why reviews?
+  .row-fluid.unit-wrapper
+    .span4.offset2.text-right
+      %h4 Consumers want reviews.
+      %p
+      Consumers want to read reviews of your business before purchasing. Our own survey showed that the only content on your website more important than reviews is price. Why not give consumers what they want, so they don't need to leave your website?
+      #{link_to 'See the research.', static_pages_whyreviews_path}
+    .span3
+      .well.text-center
+        %strong 92%
+        of users read internet reviews
+        %small Source: Etailing Group
+  .row-fluid.unit-wrapper
+    .span4.offset2.text-center
+      .well
+        %strong 87%
+        "POSITIVE information I've read online 
+        has reinforced my decision to purchase a 
+        product or service recommended to me"
+        %small Source: Cone Communications
+    .span3
+      %h4 Reviews convert.
+      %p
+      Positive reviews of your business help convert prospects and visitors into paying customers. 
+  .row-fluid.unit-wrapper
+    .span3.offset3.text-right
+      %h4 Google loves reviews.
+      %p
+      Local businesses with positive reviews are more likely to be found on Google.       
+    .span6
+      =image_tag "Google Reviews.png", { class: ["img-rounded"] }
+  .row-fluid
+    .span6.offset3
+      %h2.page-header.text-center How we help.
+  .row-fluid.unit-wrapper
+    .span4.offset2.text-right
+      %h4 Get more reviews.
+      %p
+      Increase your reviews by 10x or more, and make it easy for your biggest fans to review your business on the websites that matter - like Google, Yelp, Yellowpages.com, and TripAdvisor.
+      #{link_to 'Write a sample review.', "http://www.get3questions.com/profiles/7-sterling-cooper-draper-pryce/reviews/new"}
+    .span6
+      =image_tag "More Reviews.png", { class: ["img-rounded"] }
+  .row-fluid.unit-wrapper
+    .span6.text-right
+      =image_tag "Mobile Layout.png", { class: ["img-rounded"] }
+    .span4
+      %h4 Get bad reviews before they go social.
+      %p
+      A bad review that goes social can do significant damage to your reputation. 3Questions helps you capture negative feedback first so you can resolve the situation before it goes social.
+  .row-fluid.unit-wrapper.shared-facebook
+    .span4.offset2.text-right 
+      %h4 Get shared on Facebook.
+      %p
+      Customers can spread the word to all their friends with one click. Reach thousands of potential customers for free. A positive review shared on Facebook is
+      %strong
+        the best advertising you'll ever get.
+    .span6
+      =image_tag "Facebook Share.png", { class: ["img-rounded"] }     
+  .row-fluid.unit-wrapper.add-reviews
+    .span6.text-right
+      =image_tag "WidgetScreenshot.png", { class: ["img-rounded"] }
+    .span3
+      %h4 Add reviews to your website.
+      %p
+      Show off your positive reviews on your website with one of our free widgets, and convert more visitors to paying customers.
+  .row-fluid.unit-wrapper
+    .span4.offset2.text-right
+      %h4 Look great in Google.
+      %p
+      Show your review rating in your Google search result and increase the likelihood a customer will click on your listing.
+      #{link_to 'View a sample business profile page.', "http://www.get3questions.com/profiles/7-sterling-cooper-draper-pryce"}
+    .span6
+      =image_tag "Google Reviews.png", { class: ["img-rounded"] }
+  %p.text-center
+    = link_to "Try it for free.", new_user_registration_path, class: "btn btn-large btn-primary"
+  %p.text-center.muted
+    %small
+      #{link_to "Plans & Pricing", static_pages_pricing_path}
+  %hr
+  .footer.pagination-centered
+    %p © 3Questions 2013. All rights reserved.
+= stylesheet_link_tag "home"

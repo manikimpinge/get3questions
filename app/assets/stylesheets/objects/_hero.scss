@@ -1,0 +1,95 @@
+/*
+.hero
+  %h1 Customer reviews for your website.
+  .left
+    %p
+      %strong 3Questions
+      makes it easy to collect and share customer reviews on your website.
+      Add reviews to your website and let your customers do the selling for you.
+    = link_to "Try it for free.", new_user_registration_path, class: "btn btn-large btn-success"
+
+  .right
+    <iframe id='myIframe' frameBorder='0' src='http://threeq-staging.herokuapp.com/static_pages/11-puneet/iframe_box' style='left:12px;bottom:0px;height: 90%; overflow:hidden;z-index:1;border-radius:6px 6px 6px 6px'></iframe>  
+*/
+
+.hero {
+	background: $blue;
+    color: $white;
+    padding: 0;
+
+    @media(max-width: 768px) {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding: 0 em(20);
+    }
+
+    h1 {
+        font-weight: 400;
+        font-size: em(33);
+        line-height: 1.5;
+
+        @media(max-width: 978px) {
+            font-size: em(24);
+        }
+
+        @media(max-width: 600px) {
+            font-size: em(22);
+        }
+    }
+
+    p {
+        font-weight: 300;
+        color: rgba($white, .7);
+        font-size: em(18);
+        line-height: 1.8;
+
+        @media(max-width: 600px) {
+            font-size: em(16);
+            line-height: 1.5;
+        }
+
+    }
+
+    .span6 {
+        position: relative;
+
+        @media(min-width: 768px) {
+            height: 400px;
+        }
+    }
+
+    .text-right {
+        text-align: center;
+
+        @media(min-width:768px) {
+            position: absolute;
+            margin: auto;
+            height: 250px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            text-align: right;
+        }
+
+        @media(min-width: 978px) {
+            height: 190px;
+        }
+    }
+
+    .widget {
+        display: block;
+        margin: 20px auto;
+        width: 295px;
+        height: 290px;
+
+        @media(min-width:768px) {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+}

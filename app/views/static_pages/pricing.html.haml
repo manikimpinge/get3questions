@@ -1,0 +1,62 @@
+%h1.text-center Pricing
+.row-fluid
+  .span5.offset1.text-center
+    .pricing-table
+      %h2 Reviews+
+      %p Everything you need to grow your business with customer reviews. Invite your customers to review you via text or email and we do the rest.
+      %h4 $49.95 / month
+      = link_to "Free 30 day Trial", new_user_registration_path, class: "btn btn-large btn-primary"
+      %a.details-toggle{:href => "#reviews-details"} See details
+      .details-wrapper
+        %ul#reviews-details.unstyled
+          %li Review widget for your website
+          %li Business profile on get3questions.com
+          %li Review form on get3questions.com
+          %li Email invitations
+          %li Text message invitations
+          %li Facebook sharing
+          %li Email alerts
+          %li Add review and profile pages to your domain for $20 / month
+  .span5.text-center
+    .pricing-table
+      %h2 Customize
+      %p 
+        Customize the look and feel and add multiple profiles to the same account.  Great for 
+        %strong larger businesses 
+        with custom requirements and multiple locations.
+      %h4 custom pricing
+      =link_to 'Contact us', '#send_query',class: "btn btn-large btn-primary", data: { toggle: "modal" }
+      %a.details-toggle{:href => "#custom-details"} See details
+      .details-wrapper
+        %ul#custom-details.unstyled
+          %li 
+            Includes all 
+            %strong Reviews+ 
+            features
+          %li Add review and profile pages to your domain
+          %li Custom look and feel
+          %li Custom questions
+          %li Add review content to your pages
+          %li Multiple users, profiles, and forms
+#send_query.modal.hide.fade
+  = form_for :feedback, :url => {:controller => 'static_pages', :action => 'contact_us_query'},:html => {:id => "contact_form"} do |f|
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+      %h4
+        Contact us
+    .modal-body
+      = f.label :email_address
+      = f.text_field :email_address, :required => "required"
+      = f.label :message
+      = f.text_area :message, :required => "required", :style => "width:500px;height:150px"
+    .modal-footer
+      %button#send_contact_us_query.btn.btn-primary
+        Send
+      %button.btn.btn-primary{"aria-hidden" => "true", "data-dismiss" => "modal"}
+        Cancel
+#contact_message.modal.hide.fade{:style => "width:300px"}
+  .modal-body
+    %h4 We will contact you soon. 
+    %button.btn.btn-primary.pull-right{"aria-hidden" => "true", "data-dismiss" => "modal"}
+      OK
+

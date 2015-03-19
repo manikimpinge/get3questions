@@ -1,0 +1,258 @@
+:css
+  .widget {
+    font-family: 'Lato', sans-serif;
+    left:5px;
+    bottom:10px;
+    height: 275px; 
+    overflow:hidden;
+    position:fixed;
+    z-index:1;
+    border-radius:6px 6px 6px 6px;
+  }
+
+  .toggle {
+    background: #00A285;
+    color: #FFF;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    opacity: .9;
+    transition: opacity .4s;
+  }
+
+  .toggle:hover {
+    opacity: 1;
+  }
+
+  .star {
+    font-size: 20px;
+    color: #FBD000;
+    line-height: 25px;
+    vertical-align: top;
+    position: relative;
+  }
+
+  .text {
+    line-height: 22px;
+    font-size: 20px;
+    font-weight: 100;
+    margin-left: 2px;
+  }
+
+  .heading {
+    margin-left:10px;
+    color:white;
+    font-size:16px;
+    position:fixed;
+    margin-top:6px;
+  }
+
+  .floating_box {
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    box-shadow:0 0 5px 0 rgba(0, 0, 0, 0.2);
+    margin-left:10px;
+    height:283px;
+    width:280px;
+  }
+
+  .modal-header > div {
+    background-color:#00A285;
+    height:5px;
+    margin-left:-15px;
+    margin-top:-9px;
+    width:280px;
+    border-radius:5px 5px 0px 0px;
+  }
+
+  .minimize {
+    float:right;
+    cursor:pointer;
+  }
+
+  .icon_left_right {
+    height:28px;
+    width:18px;
+    margin-top:70px;
+    position:absolute;
+    cursor:pointer;
+    padding-left:5px;
+    margin-left:-7px;
+  }
+
+  .widget_right_auto {
+    padding-left:6px;
+    margin-left:264px;
+    position:absolute;
+    margin-top:-117px;
+    cursor:pointer
+  }
+
+  .image_carousel {
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 182px;
+    margin-top: 5px;
+  }
+
+  .modal-body {
+    height:180px !important;
+    width:252px;
+    padding:0;
+    left:0;
+    overflow-y:hidden;
+    text-align: center;
+  }
+
+  .modal-body p {
+    text-align: center;
+  }
+
+  .border {
+    border-bottom:1px solid #EEEEEE;
+    width:226px
+  }
+
+  .brand {
+    width: 131px;
+    height: 32px;
+    display: block;
+  }
+
+  .modal-footer {
+    padding: 9px 10px 0;
+  }
+
+  .review-content {
+    font-weight: 300;
+    font-size: 1.3em;
+    line-height: 1.5;
+    word-wrap:break-word;
+    height:60px;
+    width:226px;
+  }
+
+  .signature {
+    margin-top: 25px;
+    font-style: italic;
+  }
+
+  .signature img {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+  }
+
+  #widget-chart {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .text-percentage {
+    position: absolute;
+    top: 65px;
+    text-align: center;
+    font-size: 36px;
+    width: 225px;
+  }
+
+  .chart-wrapper {
+    position: relative;
+  }
+
+  .chart-wrapper h4 {
+    text-align: center;
+    position: relative;
+    top: -10px;
+    color: rgba(0,0,0,.8);
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .average {
+    height: 181px;
+    text-align: center;
+    font-weight: 400;
+    color: #666;
+  }
+
+  .average-count {
+    font-size: 100px;
+    line-height: 1;
+    color: #00A285;
+    padding-bottom: 20px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .average-count small {
+    font-size: 20px;
+    display: block;
+    color: #666;
+    font-weight: 300;
+    margin-top: 10px;
+  }
+
+  [class^="star-rating-"] {
+    margin: 7px auto 0;
+  }
+
+%div.widget
+  %div.hide.toggle{:id => "3q_logo"}
+    %span.star.white &#9733;
+    %span.text Reviews
+
+  .modal.floating_box
+    .modal-header
+      %div
+      %h4
+        Read our Reviews
+        %span.minimize -
+    %div{:id => "foo2_prev", :class => "widget_left_auto icon_left_right"}
+    .image_carousel
+      .modal-body{:id => "foo2"}
+        / example chart
+        %div.border.chart-wrapper
+          %canvas{:id => "widget-chart", "data-percentage" =>  @profile.recommended_percentage} 55%
+          .text-percentage #{@profile.recommended_percentage}%
+          %h4 of people recommend us
+        / end example chart
+
+        / example average rating
+        %div.border.average
+          .star-rating-2-5
+          .average-count
+            %small average rating
+            4.5
+          %small based on 4156 reviews
+        / end example average rating
+
+        -@data.each do |obj|
+          %div.border
+            %p 
+              = image_tag "#{obj.score.to_f}-stars.png", class: "review-star"
+            %p.muted
+              %small
+                =obj.created_at.strftime("Reviewed on %m/%d/%y")
+            %p.review-content
+              #{truncate(obj.review, :length => 54, :omission => '...')}
+              -if obj.review.length > 54
+                =link_to "more","#{profile_url(params[:id])}",{:target => "_blank"}
+            %p.muted.signature
+              = image_tag "https://graph.facebook.com/#{obj.user_id}/picture?type=small" unless obj.user_id.nil?
+              %small
+                =obj.reviewer_first
+                #{obj.reviewer_last.first}#{',' unless obj.city.blank?}
+                =obj.city
+    %div{:id => "foo2_next", :class => "widget_right_auto icon_left_right"}
+    .modal-footer
+      %p.muted.text-center
+        %small
+          Powered by
+          %a.brand-dark{href: "http://www.get3questions.com", :target => "_blank"}
+            3Questions
+
+
+=javascript_include_tag "iframe-widget-chart"

@@ -1,0 +1,78 @@
+<div style = "left:5px;bottom:0px;width: 250px; height: 260px; overflow:hidden;position:fixed;z-index:1;border-radius:6px 6px 6px 6px">
+  <div class="hide" id = "3q_logo" style = "cursor:pointer">
+    <%= image_tag "/assets/3Qlogo.png"%>
+	</div>
+	<div class="modal floating_box" style="left:0;right:0;top:0;bottom:0;box-shadow:0 0 5px 0 rgba(0, 0, 0, 0.2);margin-left:10px;height:268px;width:250px">
+	  <div class="modal-header">
+	    <h4>Reviews Content
+	      <span style="float:right;cursor:pointer" class="minimize"> -</span>
+	    </h4>
+	  <div id="foo2_prev" style="height:20px;width:12px;background-color:grey;margin-top:60px;position:absolute;cursor:pointer;padding-left:5px;margin-left:-7px"> <</div>
+	  <div class="image_carousel" style = "margin-left:20px;margin-right:20px;height:162px;margin-top:5px">
+	    <div class="modal-body" style = "height:160px;width:222px;padding:0;left:0", :id => "foo2"
+	        <% @data.each do |obj| %>
+	          <div style = "border-bottom:1px solid #EEEEEE;width:196px">
+	            <p>
+	              <img class="review_star" src="<%= /assets/#{obj.score.to_f}-star.png}%>">
+					</p>
+	            <p class="muted">
+	              <small>
+	                <%= obj.created_at.strftime("Reviewed on %m/%d/%y")%>
+						</small>
+					</p>
+	            <p style="word-wrap:break-word;height:60px;width:196px">
+	              <%=truncate(obj.review, :length => 54, :omission => '...', :separator => ' ')%>
+	              <%if obj.review.length > 54%>
+	                <%= link_to "See more","#{profile_url(params[:profile_id])}",{:target => "_blank"}%>
+						<%end%>
+	            </p>
+					<%unless obj.user_id.nil?%>
+	              <p> 
+	                <img src= "https://graph.facebook.com/"+<%=obj.user_id%>+"/picture?type=small">
+						</p>
+					<%end%>
+	            <p class="muted">
+	              <small>
+	                <%=obj.reviewer_first%>
+	                <%=obj.reviewer_last.first%>
+	                <%=obj.city%>
+	                <br/>
+	                <%=obj.product_description%>
+						</small>
+					</p>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	  <div id = "foo2_next" style = "height:20px;width:12px;padding-left:6px;background-color:grey;margin-left:240px;position:absolute;margin-top:-100px;cursor:pointer" >></div>
+	    <div class="modal-footer" style = "text-align:center;padding-bottom:5px">
+	      Powered by 3Question
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	
+$("#foo2").carouFredSel({
+   width: 210,
+   height: 160,
+   items: 1,
+   circular: true,
+   infinite: true,
+   auto  : false,
+   
+   prev  : {   
+      button   : "#foo2_prev",
+      key      : "left"
+   },
+   next  : { 
+      button   : "#foo2_next",
+      key      : "right"
+   },
+   pagination  : "#foo2_pag"
+});
+
+
+
+</script>
+

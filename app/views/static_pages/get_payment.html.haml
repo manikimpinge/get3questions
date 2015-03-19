@@ -1,0 +1,24 @@
+%h3 Billing Information
+
+=form_for @account, :url => {:action => 'verify_payment',:account_type => params[:account_type]}, :method => 'post' do |f|
+  %div.field
+    =label_tag "Name on card"
+    =text_field_tag :name_on_card, nil, :required => true
+  %div.field
+    =label_tag "Card Number"
+    =text_field_tag :card_number, nil, :required => true
+  %div.field
+    =label_tag "Expire Date:"
+    =select_month nil, {:add_month_numbers_true => true}, {name: "exp_month", :required => true}
+    =select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: "exp_year", :required => true}
+  %div.field
+    =label_tag "Security Code on Card (CVV)"
+    =text_field_tag :card_id, nil, :required => true
+  %div.field
+    =label_tag "Discount Coupon Code"
+    =text_field_tag :stripe_coupon
+  %div.field
+    =label_tag "Amount"
+    =text_field_tag :amount, params[:account_type]=="premium" ? "$49.95" : "$99.95", {:readonly=>"readonly"}
+  .actions
+  =f.submit "Next"

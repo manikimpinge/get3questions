@@ -1,0 +1,21 @@
+%h1 Your Invitations
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th First name
+      %th Last name
+      %th Email
+      %th Phone
+      %th
+      %th
+      %th
+
+  %tbody
+    = render invitations
+
+%p
+  #{link_to "Send an Invite", new_invitation_path, class: "btn btn-large btn-success" }
+%p
+  %br/
+  #{link_to 'Home', static_pages_home_path} | #{link_to 'View Profile', profile_path(current_user.profile)} | #{link_to 'Edit Profile', edit_profile_path(current_user.profile)} | #{link_to "Edit Account", edit_user_registration_path}

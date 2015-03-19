@@ -1,0 +1,190 @@
+/*
+ *= require bootstrap
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import "bourbon";
+
+// colors
+$green: #00A285;
+$yellowLighter: #FCE197;
+$yellow: #E7CA7D;
+$greyDarker: #424243;
+$grey: #7A797A;
+$greyLighter: #ECECEC;
+$greyLightest: #F8F8F8;
+$black: #000;
+$white: #FFF;
+
+// sizing
+$widgetWidth: 200px;
+$circleSize: 110px;
+
+// spacing
+$v-space: em(14);
+
+
+/*
+* Rating sidebar widget (200px wide) with canvas chart for displaying percentages
+*
+<div class="widget">
+	
+	<canvas id="g3q-chart" data-percentage="87"></canvas>
+	<div id="g3q-circle" class="canvas-circle" >
+		87%
+	</div>
+
+	<div class="meta-name">recommend</div>
+
+	<div class="company-name">Sterling Cooper Draper Pryce</div>
+
+	<ul class="stars">
+		<li class="full">&#9733;</li>
+		<li class="full">&#9733;</li>
+		<li class="half">&#9733;</li>
+		<li>&#9733;</li>
+		<li>&#9733;</li>
+	</ul>
+
+	<div class="widget-footer">
+		<a href="#">Read 45 Reviews</a>
+	</div>
+
+</div>
+*/
+.widget {
+	width: $widgetWidth;
+	background: $white;
+	padding: em(10);
+	position: relative;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+
+	border: 1px solid #E7E7E7;
+
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	
+	// Add top extra border
+	&:before {
+		content: "";
+		height: 5px;
+		width: 100%;
+		background: $black;
+		position: absolute;
+		display: block;
+		left: 0;
+		top: 0;
+
+	}
+
+	// Top widget circle
+	.canvas-circle {
+		width: $circleSize;
+		background: $green;
+		@include retina-image("../assets/person_icon", 79px 80px);
+		background-repeat: no-repeat;
+		background-position: center 105%;
+		border-radius: 50%;
+		display: block;
+		line-height: $circleSize;
+		font-size: em(32);
+		font-weight: 700;
+		color: $white;
+		margin: 10px auto 0;
+
+	}
+
+	.canvas.canvas-circle {
+		position: absolute;
+		top: 30px;
+		left: 50%;
+		margin-left: -$circleSize/2;
+		margin-top: 0;
+	}
+
+	// meta name
+	.meta-name {
+		font-weight: 700;
+		font-size: em(18);
+		margin-top: $v-space;
+	}
+
+	// company name
+	.company-name {
+		color: $grey;
+		font-size: em(15);
+		margin-top: $v-space;
+	}
+
+
+	// Star rating
+	.stars {
+		list-style: none;
+		padding-left: 0;
+		margin-left: 0;
+		text-align: center;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
+	.stars li {
+		display: inline-block;
+		@include hide-text;
+		@include retina-image("../assets/stars_sprite", 93px 25px);
+
+		width: 24px;
+		height: 24px;
+
+		&.full {
+			background-position: -34px 0;
+		}
+
+		&.half {
+			background-position: -68px 0;
+		}
+	}
+
+
+
+	// widget footer
+	.widget-footer {
+		background: $greyLightest;
+		margin: 25px -10px -10px;
+		border: 1px solid $greyLighter;
+
+		a {
+			line-height: $v-space * 4;
+			color: $green;
+			text-decoration: none;
+			font-size: em(15);
+			display: block;
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

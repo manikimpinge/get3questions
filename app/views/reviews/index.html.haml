@@ -1,0 +1,18 @@
+%h3 Listing reviews
+
+%table.table
+  %thead
+    %tr
+      %th Profile
+      %th Score
+      %th Recommend to a friend?
+      %th Review
+      %th Public?
+      %th
+      %th
+  %tbody
+    = render reviews
+
+%br/
+
+= link_to 'New Review', new_profile_review_path(profile), class: "btn btn-primary"

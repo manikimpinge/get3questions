@@ -1,0 +1,44 @@
+- content_for :meta_tags do
+  %meta{ content: "183405068477171", property: "fb:app_id"}
+  %meta{ content: "three_questions:business", property: "og:type"}
+  %meta{ content: request.url, property: "og:url"}
+  %meta{ content: "Sample Business", property: "og:title"}
+  %meta{ content: "http://serene-reef-8689.herokuapp.com/assets/rails-a3386665c05a2d82f711a4aaa72d247c.png", :property => "og:image"}/
+
+%p
+  %b
+    = profile.business_name
+  gets
+  %b
+    = review.score
+  stars from me!
+
+= review.review
+
+%dl.dl-horizontal
+  %dt
+    Number of reviews:
+  %dd
+    = profile.reviews.count
+
+  %dt
+    Business Name:
+  %dd
+    = profile.business_name
+
+  %dt
+    Score:
+  %dd
+    = review.score
+
+  %dt
+    Recommendation:
+  %dd
+    = review.recommendation
+
+%p
+  Review:
+  = review.review
+-if profile.id == current_user.profile.id
+  = link_to 'Edit', edit_profile_review_path(profile, review), class: "btn"
+= link_to 'Back', profile_reviews_path(profile), class: "btn"

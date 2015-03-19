@@ -1,0 +1,42 @@
+production:
+  app_host: "get3questions.com"
+  fb_app_id: "183405068477171"
+  fb_secret: "d7a822989056c0c457f8342ca651081f"
+  from_email: "info@get3questions.com"
+  twilio_outgoing_no: "+14157993895"
+  exception_recipients: "frankdanderson@gmail.com"
+  stripe_api_key: sk_test_1rRpyGevb160XEEBDHUL6blH
+  stripe_plan_49: test_1
+  stripe_plan_99: test_2
+  email_hours: 48
+  review_second_request_days: 7
+
+staging:
+  app_host: "threeq-staging.herokuapp.com"
+  fb_app_id: "516655855057678"
+  fb_secret: "a7cc2c6f8d766e7c13652460337602c3"
+  from_email: "info@get3questions.com"
+  twilio_outgoing_no: "+14157993895"
+  exception_recipients: "frankdanderson@gmail.com, pgupta@enbake.com"
+  stripe_api_key: sk_test_1rRpyGevb160XEEBDHUL6blH
+  stripe_plan_49: test_1
+  stripe_plan_99: test_2
+  email_hours: 1
+  review_second_request_days: 1
+
+development:
+  app_host: "localhost:3000"
+  fb_app_id: "378986328880669"
+  fb_secret: "b84444248fdb7a1d6e38df7bd81a9d42"
+  from_email: "info@get3questions.com"
+  twilio_outgoing_no: "15005550006"
+  stripe_api_key: sk_test_1rRpyGevb160XEEBDHUL6blH
+  stripe_plan_49: test_1
+  stripe_plan_99: test_2
+  email_hours: 1
+  review_second_request_days: 7
+
+test:
+  app_host: "localhost:3000"
+  from_email: "info@get3questions.com"
+  twilio_outgoing_no: "15005550006"

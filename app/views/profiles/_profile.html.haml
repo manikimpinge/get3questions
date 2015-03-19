@@ -1,0 +1,22 @@
+%tr
+  %td
+    = profile.business_name
+  %td
+    = profile.address
+  %td
+    = profile.city
+  %td
+    = profile.state
+  %td
+    = profile.zip
+  %td
+    = profile.phone
+  %td
+    = link_to 'Show', profile
+  %td
+    = link_to 'Review', new_profile_review_path(profile)
+  -if profile.id == current_user.profile.id
+    %td
+      = link_to 'Edit', edit_profile_path(profile)
+    %td
+      = link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' }

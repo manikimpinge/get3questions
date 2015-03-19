@@ -1,0 +1,52 @@
+<%= form_for @account, :url => {:action => 'verify_payment'}, :method => 'post', :html => { :autocomplete => "off" } do |f| %>
+<div>
+  <h2>Billing Information</h2>
+  <div>Please Enter Billing Information</div>
+  <div>
+  <%= content_tag :table, :class => "form-table" do%>
+    <%= content_tag :tr do %>
+      <%= content_tag :td do%>
+        <%= label_tag "Name on Card:"%>
+      <% end %>
+      <%= content_tag :td do%>
+        <%= text_field_tag :name_on_card, nil,:required => true%>
+      <% end %>
+    <% end %>
+    <%= content_tag :tr do%>
+      <%= content_tag :td do%>
+        <%= label_tag "Card Number:"%>
+      <% end %>
+      <%= content_tag :td do%>
+        <%= text_field_tag :card_number, nil, :required => true%>
+      <% end %>
+    <% end %>
+    <%= content_tag :tr do%>
+      <%= content_tag :td do%>
+        <%= label_tag "Expire Date:"%>
+      <% end %>
+      <%= content_tag :td do%>
+        <%= select_month nil, {add_month_numbers_true: true}, {name: "exp_month", :required => true}%>
+        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: "exp_year", :required => true}%>
+      <% end %>
+    <% end %>
+    <%= content_tag :tr do%>
+      <%= content_tag :td do%>
+        <%= label_tag "Security Code:"%>
+      <% end %>
+      <%= content_tag :td do%>
+        <%= text_field_tag :card_id, nil,:class => "tiny-txt", :required => true%>
+        <%= link_to "What's this?", "#", :title => "Card Identification Number(CID).Back of the card: if present, 3 digits in the signature area to the right of the credit card number.", :class => "what-is-this camp_pop", "data-toggle" => "popover", "data-content" => "Back of the card: if present, 3 digits in the signature area to the right of the credit card number."%>
+      <% end %>
+    <% end %>
+    <%= content_tag :tr do%>
+      <td align="right"><label for="amount">Amount :</label></td>
+      <td><input name = "amount" type="text" id="amount" readonly="readonly" value="$49.95"><span class="risk-free"> </span></td>
+    <% end %>
+    <%= content_tag :tr do%>
+      <td></td>
+      <td><%= f.submit "Next", :class => "submit-button sbmt_btn" %></td>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+<% end %>

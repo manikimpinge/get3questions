@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  profile_id: 1
+  score: 1
+  recommendation: false
+  review: MyText
+
+two:
+  profile_id: 1
+  score: 1
+  recommendation: false
+  review: MyText

@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="span4">
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }, html: {class: "well"}) do |f| %>
+  <%= devise_error_messages! %>
+
+  <fieldset>
+
+    <h3>Edit <%= resource_name.to_s.humanize %> Information</h2>
+
+    <div><%= f.label :first_name %>
+    <%= f.text_field :first_name, :autofocus => true %></div>
+
+    <div><%= f.label :last_name %>
+    <%= f.text_field :last_name %></div>
+    
+    <div><%= f.label :phone_number %>
+    <%= f.text_field :phone_number ,:class => "bfh-phone","data-format" => "ddd-ddd-dddd", "data-number" => resource.phone_number %></div>
+
+    <div><%= f.label :email %>
+    <%= f.email_field :email, :autofocus => true %></div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div><%= f.label :password, 'New password' %>
+    <%= f.password_field :password, :placeholder => "Skip if you don't want to change your password", :autocomplete => "off" %></div>
+
+    <div><%= f.label :password_confirmation, 'Confirm new password' %>
+    <%= f.password_field :password_confirmation, :placeholder => "Skip if you don't want to change your password" %></div>
+
+    <div><%= f.label :current_password, 'Current password' %>
+    <%= f.password_field :current_password, :placeholder => "Enter to confirm changes" %></div>
+
+    <div class="form-actions">
+      <input class="btn btn-success" type="submit" value="Save Changes">            
+    </div>
+
+<% end %>
+
+<!--<h4>Cancel your account</h3>
+
+<%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+
+<%= link_to "Back", :back %>-->

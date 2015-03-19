@@ -1,0 +1,25 @@
+.review-item
+  .clearfix
+    %div{:class => "star-rating-"+review.score.to_s.gsub('.','-')+" pull-left"}
+    %p.pull-right.text-green
+      &#10004;
+      Recommends this business
+  %p.muted
+    %small
+  %p.review-content{:style=>"word-wrap:break-word"}
+    #{review.review}
+  %p.muted
+    %small
+      =review.created_at.strftime("%m/%d/%y")
+      by
+      = image_tag "https://graph.facebook.com/#{review.user_id}/picture?type=small" unless review.user_id.nil?
+      =review.reviewer_first
+      #{review.reviewer_last.first}#{',' unless review.city.blank?}
+      =review.city
+      %br/
+      =review.product_description
+  -#%ul.children
+    -#%li  
+      -#%p 
+        -#%strong Business name says:
+        -#Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elementum, orci quis aliquam tempus, dolor magna laoreet lectus, vitae feugiat urna tellus eget eros. Sed convallis erat vitae lorem viverra ornare. Aenean magna lacus, pellentesque id viverra nec, sollicitudin quis mi.

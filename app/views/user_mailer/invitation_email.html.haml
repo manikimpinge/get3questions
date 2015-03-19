@@ -1,0 +1,25 @@
+%p
+  %font{:face => "Helvetica"} Hi #{@invitation.first_name},
+  
+%p
+  %font{:face => "Helvetica"} Thanks for your business - we really appreciate it.
+
+%p
+  %font{:face => "Helvetica"} Please take a moment to let us know how we did by completing our 3 question survey (it only takes a minute).
+
+%p
+  .fancy_button
+    = link_to "Provide Feedback", new_profile_review_url(@invitation.user.profile.to_param, :invite_id => @invitation.id)
+
+%p
+  %br/
+  %font{:face => "Helvetica"} Thanks,
+
+%p
+  %font{:face => "Helvetica"} #{@invitation.user.first_name} #{@invitation.user.last_name}
+
+%p
+  %font{:face => "Helvetica"} #{@invitation.user.profile.business_name}
+
+
+

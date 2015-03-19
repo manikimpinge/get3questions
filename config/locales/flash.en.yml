@@ -1,0 +1,20 @@
+en:
+  registrations:
+    create:
+      success:
+        "Congrats!  Now you can create a profile for your business."
+  profiles:
+    update:
+      success:
+        "Congrats, here's your business' profile page!  Now it's time to <a href='%{url}'>invite</a> your first customer to review your business."
+  reviews:
+    create:
+      success:
+        "Thanks for posting your review!"
+  invitations:
+    create:
+      success:
+        "Your invitation has been sent."
+    update:
+      success:
+        "The invitation was updated."

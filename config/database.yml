@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: question
+  host: localhost
+  pool: 5
+  username: fcuser
+  password: enbake
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: question
+  host: localhost
+  pool: 5
+  username: fcuser
+  password: enbake
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: question_test
+  host: localhost
+  pool: 5
+  username: fcuser
+  password: enbake

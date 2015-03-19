@@ -1,0 +1,20 @@
+/ .navbar{:class => "#{'navbar-fixed-top' if params[:controller] == "static_pages" && params[:action] == "home" && user_signed_in? == false}" }
+.navbar{:class => "navbar-fixed-top" }
+  .navbar-inner
+    .container.clearfix
+      %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+      = link_to "get 3 questions", static_pages_home_path, class: "brand"
+
+
+      .nav-collapse.collapse
+        %ul.nav.pull-right
+          - if user_signed_in?
+            %li= link_to current_user.first_name, static_pages_home_path
+            %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+          - else
+            %li= link_to "Sign Up", new_user_registration_path
+            %li= link_to "Sign In", new_user_session_path

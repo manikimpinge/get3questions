@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = invitation.first_name
+%p
+  %b Last name:
+  = invitation.last_name
+%p
+  %b Email:
+  = invitation.email
+%p
+  %b Phone:
+  = invitation.phone
+
+= link_to 'Edit', edit_invitation_path(invitation)
+\|
+= link_to 'Back', invitations_path

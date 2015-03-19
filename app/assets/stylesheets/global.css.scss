@@ -1,0 +1,56 @@
+@import "bourbon";
+
+@import "base";
+
+@import "objects/buttons";
+@import "objects/navbar";
+@import "objects/stars";
+
+
+body {
+	font-family: 'Lato', sans-serif;
+
+	@media(min-width: 979px) {
+		padding-top: 76px;
+	}
+}
+
+.alert {
+	margin-top: 10px;
+}
+
+img#logo {
+  padding: 4px 0
+}
+
+.form-actions {
+  border-top: 0;
+  padding: 8px 0;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  h3 {
+    font-size: 16px;
+    line-height: 16px;
+  }
+}
+
+.brand-dark {
+	@include hide-text;
+	@include retina-image("logo_dark", 68px 17px);
+	padding: 0;
+	display: inline-block;
+	vertical-align: top;
+	width: 68px;
+	height: 17px;
+	opacity: .8;
+	margin-top: 2px;
+}
+
+.footer {
+	position: relative;
+	color: rgba(0,0,0,.3);
+	font-size: em(14);
+	top: -5px;
+}

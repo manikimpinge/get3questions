@@ -1,0 +1,43 @@
+// .star.white {
+// 	color: white;
+// }
+
+// .star.half:after {
+// 	content: "";
+// 	width: 50%;
+// 	height: 22px;
+// 	background: #FFF;
+// 	position: absolute;
+// 	left: 50%;
+// 	z-index: 1;
+// }
+
+// .star.half:before {
+// 	content: "\2606";
+// 	width: 50%;
+// 	height: 22px;
+// 	position: absolute;
+// 	left: 0;
+// 	z-index: 2;
+// }
+
+// yelp rating sprite
+[class^="star-rating-"] {
+	@include retina-image('full_stars_sprite', 137px 283px);
+	height: 23px;
+	width: 137px;
+}
+
+$i: 0;
+@while $i < 6 {
+   
+    .star-rating-#{$i} {
+       background-position: 0 -#{$i * 52}px;
+    }
+
+	.star-rating-#{$i}-5 {
+       background-position: 0 -#{$i * 52 + 26}px;
+    }
+
+   $i: $i + 1;
+}

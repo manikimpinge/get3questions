@@ -1,0 +1,9 @@
+<h4> This is a sample 200x400 widget for the sidebar of your website. </h4>
+
+<iframe src='http://www.get3questions.com/profiles/7-sterling-cooper-draper-pryce/widgets/summary' frameborder='0' allowtransparency='true' width='200' height='400'></iframe>
+
+<h4> This is sample review content to embed in a page on your website. </h4>
+
+<iframe src='http://www.get3questions.com/profiles/7-sterling-cooper-draper-pryce/widgets/detail' frameborder='0' allowtransparency='true' width='90%' height='800'></iframe>
+
+<iframe id='myIframe' frameBorder='0' src='http://localhost:3000/static_pages/1-cartelligent/iframe_box' style='right:12px;bottom:0px;width: 22%; height: 44%; overflow:hidden;position:fixed;z-index:1;border-radius:6px 6px 6px 6px'></iframe>

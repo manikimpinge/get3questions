@@ -1,0 +1,15 @@
+%section
+  %article
+    %h1
+      Default (medium)
+    = image_tag profile.image.url
+
+  %article
+    %h1
+      4 Stars
+    = image_tag profile.image.url(:rating_4_stars)
+
+  %article
+    %h1
+      5 Stars
+    = image_tag profile.image.url(:rating_5_stars)

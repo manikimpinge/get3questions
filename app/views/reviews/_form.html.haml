@@ -1,0 +1,37 @@
+= image_tag profile.page_header.url, { class: ["custom-profile-image"] } unless profile.page_header_file_name.nil?
+= simple_form_for([profile, review]) do |f|
+  = f.error_notification
+  .row-fluid
+    .span6.offset3
+      .white-wrapper
+        %fieldset
+          %legend
+            Feedback for <strong> #{profile.business_name} </strong>
+          .form-inputs
+            = f.input :score, collection: [5,4,3,2,1], label: 'How was your experience?'
+            .control-group
+              #review-stars
+            = f.input :recommendation, as: :radio_buttons, label: 'Would you recommend to a friend?'
+            = f.input :review, input_html: { rows: 6}, label: 'What would you tell a friend?'
+            = f.input :reviewer_first, label: "First Name"
+            = f.input :reviewer_last, label: "Last Name"
+            = f.input :city, label: "City"
+            -if profile.user.user_account_type == "custom" and profile.user.product_description == "on"
+              = content_tag :p, "<span id='review_product_question'>#{profile.product_question}</span>".html_safe
+              = f.input :product_description,placeholder: "#{profile.product_placeholder}", input_html: { rows: 4 }, label: false
+            -#= f.input :contact, label: false do
+              -#%label.checkbox.inline
+                -#= f.check_box :contact
+                -#We're sorry you had a bad experience. Is it ok to contact you? 
+            = f.input :public, label: false do
+              %label.checkbox.inline
+                = f.check_box :public,{:checked => true}
+                %small It's OK to post my feedback as an online review using my first name and last initial - e.g., "Joe S."
+            = hidden_field_tag :invitation_id,"", :value => params[:invite_id]
+          .form-actions
+            %input.btn.btn-primary{ type: "submit", value: "Share on Facebook", name: "fb_share", id: "fb-share-button" }
+            %button.btn.btn-primary{ type: "submit", name: "post" } Submit
+        %p.instruction
+          *
+          %small 
+            Fields marked with asterisk are required

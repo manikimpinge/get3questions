@@ -1,0 +1,23 @@
+%p
+  %font{:face => "Helvetica"} Hi #{@invitation.first_name},
+
+%p
+  %font{:face => "Helvetica"} Thank you again for your business and for taking the time to provide us with feedback on your experience.
+
+%p
+  %font{:face => "Helvetica"} If you have a moment to review us on #{@invitation.profile.review_name} please click the link below. We rely on word-of-mouth from happy customers like you and these reviews really help spread the word.
+
+%p
+  .fancy_button
+    -link = @invitation.profile.review_link.nil? ? "#" : @invitation.profile.review_link.include?('http://') ? @invitation.profile.review_link : "http://#{@invitation.profile.review_link}"
+    = link_to "Review Us on #{@invitation.profile.review_name}", link
+
+%p
+  %br/
+  %font{:face => "Helvetica"} Thanks again,
+
+%p
+  %font{:face => "Helvetica"} #{@invitation.user.first_name} #{@invitation.user.last_name}
+
+%p
+  %font{:face => "Helvetica"} #{@invitation.user.profile.business_name}

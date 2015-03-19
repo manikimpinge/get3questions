@@ -1,0 +1,57 @@
+.well.well-large
+  .page-header
+    %h3
+      = profile.business_name
+      %small
+        #{profile.description}
+  .row-fluid
+    .span8
+      .columna.pull-left
+        - if profile.reviews.present?
+          %p
+            %strong
+              = image_tag "#{profile.average_score.to_s}-stars.png", alt: "#{profile.average_score} out of 5"
+          %p
+          %strong
+            #{profile.recommended_percentage}%
+          of reviewers recommend to a friend
+          %p
+            %strong
+              = profile.reviews.count
+            reviews
+          %p
+            %small
+              #{link_to "Review this business", new_profile_review_url(profile)}
+        - else
+          %p.text-error
+            This business has not been reviewed yet. Be the first to #{link_to "write a review", new_profile_review_url(profile)}.
+      .columnb.pull-right
+        %p
+          %br/
+          %address
+            =profile.business_name
+            %br/
+            = profile.address
+            %br/
+            %span
+              #{profile.city},
+              = profile.state
+              = profile.zip
+            %br/
+            ph. 
+            = profile.phone
+
+#container.js-masonry{'data-masonry-options' => '{ "columnWidth": 0, "itemSelector": ".item" }'}
+  - profile.reviews.reverse.each do |review|
+    .well.well-small.span3.item{:style=>"width:235px"}
+      %p
+        = image_tag "#{review.score.to_f}-stars.png", class: "review-star"
+      %p{:style=>"word-wrap:break-word"}
+        "#{review.review}"
+      %p
+        = image_tag "https://graph.facebook.com/#{review.user_id}/picture?type=small" unless review.user_id.nil?
+      .muted
+        %small
+          =review.reviewer_first
+          =review.reviewer_last
+          =review.created_at.strftime("reviewed on %m/%d/%y")
